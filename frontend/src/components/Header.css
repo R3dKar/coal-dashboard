@@ -1,0 +1,165 @@
+.header {
+  margin-bottom: 40px;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  gap: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2.5em;
+  line-height: 1.2;
+  color: var(--text-primary);
+  text-shadow: var(--text-shadow);
+  flex: 1;
+  text-align: left;
+}
+
+.controls {
+  display: flex;
+  gap: 30px;
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 200px;
+}
+
+.control-label {
+  font-size: 0.9em;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-align: left;
+}
+
+/* Select Styles */
+.select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 200px;
+}
+
+.select-trigger:hover {
+  border-color: var(--accent-primary);
+}
+
+.select-trigger:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-primary);
+}
+
+.select-chevron {
+  opacity: 0.6;
+  transition: transform 0.2s;
+}
+
+.select-trigger[data-state='open'] .select-chevron {
+  transform: rotate(180deg);
+}
+
+.select-content {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  min-width: var(--radix-select-trigger-width);
+  max-height: var(--radix-select-content-available-height);
+}
+
+.select-item {
+  padding: 8px 12px;
+  border-radius: 4px;
+  color: var(--text-primary);
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.2s;
+}
+
+.select-item:hover {
+  background: var(--bg-secondary);
+}
+
+.select-item[data-highlighted] {
+  background: var(--accent-primary);
+  color: white;
+}
+
+/* Date Range Styles */
+.date-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-width: 200px;
+}
+
+.date-icon {
+  opacity: 0.6;
+  color: var(--text-secondary);
+}
+
+.date-input {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1em;
+  flex: 1;
+  min-width: 0;
+}
+
+.date-input:focus {
+  outline: none;
+}
+
+.date-separator {
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-top {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .header h1 {
+    text-align: center;
+    font-size: 2em;
+  }
+  
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .control-group {
+    min-width: auto;
+  }
+}

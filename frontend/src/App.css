@@ -1,0 +1,312 @@
+:root {
+  /* Light theme (default) */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --text-primary: #213547;
+  --text-secondary: #6c757d;
+  --text-tertiary: #495057;
+  --border: #e0e0e0;
+  --border-light: #dee2e6;
+  --accent-primary: #007bff;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  /* Dark theme */
+  --bg-primary: #000000;  /* Черный фон */
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #2a2a2a;
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-tertiary: rgba(255, 255, 255, 0.6);
+  --border: #404040;
+  --border-light: #333333;
+  --accent-primary: #3b82f6;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.2);
+  --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Применяем фон ко всему документу */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html {
+  background-color: var(--bg-primary);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+#root {
+  background-color: var(--bg-primary);
+}
+
+.app {
+  padding: 20px;
+  font-family: system-ui, -apple-system, sans-serif;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Обновляем стили для всех компонентов */
+.header {
+  margin-bottom: 40px;
+  text-align: center;
+  padding: 20px 0;
+  background-color: var(--bg-primary);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2.5em;
+  line-height: 1.2;
+  color: var(--text-primary);
+  text-shadow: var(--text-shadow);
+  flex: 1;
+  text-align: left;
+}
+
+.dashboard-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  background-color: var(--bg-primary);
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.col {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-lg);
+  min-height: 200px;
+  transition: all 0.3s;
+}
+
+/* Metrics Cards */
+.metrics-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.metric-card {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align: center;
+  background: var(--bg-secondary);
+  transition: all 0.3s;
+}
+
+.metric-value {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0 0 0;
+  color: var(--text-primary);
+}
+
+/* Charts and Maps */
+.thermal-map, .temperature-chart, .risk-chart {
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.map-container, .chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 300px;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.map-placeholder, .chart-placeholder {
+  padding: 40px;
+  background: var(--bg-secondary);
+  border: 2px dashed var(--border-light);
+  border-radius: 8px;
+  color: var(--text-secondary);
+}
+
+/* Alerts */
+.alerts-log {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-primary);
+}
+
+.alerts-list {
+  flex: 1;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 15px;
+}
+
+.alert-item {
+  padding: 12px;
+  margin: 8px 0;
+  border-left: 4px solid;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.alert-item.warning {
+  border-left-color: #ffc107;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.alert-item.danger {
+  border-left-color: #dc3545;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.alert-time {
+  font-size: 0.85em;
+  color: var(--text-secondary);
+}
+
+.alert-message {
+  flex: 1;
+  margin-left: 10px;
+}
+
+/* Recommendations */
+.recommendations {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-primary);
+}
+
+.recommendations-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.recommendation-item {
+  padding: 12px 15px;
+  background: var(--bg-secondary);
+  border-radius: 6px;
+  border-left: 4px solid var(--accent-primary);
+  color: var(--text-primary);
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  gap: 30px;
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 200px;
+}
+
+.control-label {
+  font-size: 0.9em;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-align: left;
+}
+
+.select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 200px;
+}
+
+.select-trigger:hover {
+  border-color: var(--accent-primary);
+}
+
+.date-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-width: 200px;
+}
+
+.date-input {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1em;
+  flex: 1;
+  min-width: 0;
+}
+
+.date-input:focus {
+  outline: none;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+  
+  .header h1 {
+    text-align: center;
+    font-size: 2em;
+  }
+}
+
+/* Risk colors - они остаются одинаковыми в обеих темах */
+.risk-low { color: #10b981; }
+.risk-medium { color: #f59e0b; }
+.risk-high { color: #ef4444; }
+.risk-critical { color: #dc2626; }
