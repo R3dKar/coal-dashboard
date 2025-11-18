@@ -38,9 +38,10 @@
   background-color: white;
   border-radius: 50%;
   transition: transform 0.2s;
-  transform: translateX(2px);
+  transform: translateX(-4px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .theme-switch[data-state='checked'] .theme-thumb {
-  transform: translateX(22px);
+  transform: translateX(18px);
 }
