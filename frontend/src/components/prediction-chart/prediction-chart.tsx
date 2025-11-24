@@ -61,6 +61,11 @@ const options = {
   ]
 };
 
+export interface PredictionChartProps {
+  storageId: number;
+  pileNumber: number
+};
+
 export const PredictionChart = () => {
   return (
     <Card className={classes.card}>

@@ -1,43 +1,60 @@
 import { Card } from '@radix-ui/themes';
 import EChartsReact from 'echarts-for-react';
 import classes from './mass-chart.module.css';
-import data from '../aqi-beijing.json';
+import { useQuery } from '@tanstack/react-query';
+import { getMass } from '../../api/api';
+import { Loading } from '../loading/loading';
+import { useMemo } from 'react';
 
-const options = {
-  tooltip: {
-    trigger: 'axis'
-  },
-  grid: {
-    left: '5%',
-    right: '5%',
-    bottom: '25%',
-    top: '5%'
-  },
-  yAxis: {},
-  dataZoom: [
-    {
-      type: 'slider'
+const chartOptions = (mass?: number[], timestamp?: number[]) => {
+  if (!mass || !timestamp) return null;
+
+  return {
+    tooltip: {
+      trigger: 'axis'
     },
-    {
-      type: 'inside'
+    grid: {
+      left: '5%',
+      right: '5%',
+      bottom: '25%',
+      top: '5%'
+    },
+    yAxis: {},
+    dataZoom: [
+      {
+        type: 'slider'
+      },
+      {
+        type: 'inside'
+      }
+    ],
+    xAxis: {
+      data: timestamp.map(item => new Date(item * 1000).toLocaleDateString())
+    },
+    series: {
+      name: 'Тоннаж',
+      type: 'line',
+      data: mass
     }
-  ],
-  xAxis: {
-    data: data.map(item => item[0])
-  },
-  series: {
-    name: 'Тоннаж',
-    type: 'line',
-    data: data.map(item => item[1])
-  }
+  };
 };
 
-export const MassChart = () => {
+export interface MassChartProps {
+  storageId: number,
+  pileNumber: number
+};
+
+export const MassChart = ({ storageId, pileNumber }: MassChartProps) => {
+  const { data, isFetching } = useQuery({ queryKey: [], queryFn: async () => getMass(storageId, pileNumber) });
+  const options = useMemo(() => chartOptions(data?.mass, data?.timestamp), [data]);
+
+  if (isFetching) return <Loading />
+
   return (
     <Card className={classes.card}>
       <div className={classes.container}>
-        <h2 className={classes.header}>Тоннаж: {123}т</h2>
-        <EChartsReact option={options} className={classes.chart} />
+        <h2 className={classes.header}>Тоннаж: {Math.floor(data?.mass.at(-1)!)}т</h2>
+        <EChartsReact option={options!} className={classes.chart} />
       </div>
     </Card>
   );

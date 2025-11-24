@@ -3,6 +3,7 @@ import EChartsReact from 'echarts-for-react';
 import * as echarts from 'echarts';
 import classes from './archive-chart.module.css';
 import data from '../aqi-beijing.json';
+import { useQuery } from '@tanstack/react-query';
 
 const options = {
   tooltip: {
@@ -60,7 +61,14 @@ const options = {
   ]
 };
 
+export interface AcrchiveChartProps {
+  storageId: number,
+  pileNumber: number
+};
+
 export const ArchiveChart = () => {
+  // const { data, isFetching } = useQuery({ queryKey: [], queryFn: async () => }) // TODO: api endpoint for fires
+
   return (
     <Card className={classes.card}>
       <div className={classes.container}>

@@ -1,20 +1,19 @@
 import { Card, Table } from '@radix-ui/themes';
 import classes from './table-chart.module.css';
+import { getTransportation } from '../../api/api';
+import { useQuery } from '@tanstack/react-query';
+import { Loading } from '../loading/loading';
 
-const data = [
-  [new Date(2025, 5, 23), new Date(2025, 5, 24)],
-  [new Date(2025, 5, 23), new Date(2025, 5, 24)],
-  [new Date(2025, 5, 23), new Date(2025, 5, 24)],
-  [new Date(2025, 5, 23), new Date(2025, 5, 24)],
-  [new Date(2025, 5, 23), new Date(2025, 5, 24)],
-  [new Date(2025, 5, 23), new Date(2025, 5, 24)],
-  [new Date(2025, 5, 23), new Date(2025, 5, 24)],
-  [new Date(2025, 5, 23), new Date(2025, 5, 24)],
-  [new Date(2025, 5, 23), new Date(2025, 5, 24)],
-  [new Date(2025, 5, 23), new Date(2025, 5, 24)],
-]
+export interface TableChartProps {
+  storageId: number,
+  pileNumber: number
+};
 
-export const TableChart = () => {
+export const TableChart = ({ storageId, pileNumber }: TableChartProps) => {
+  const { data, isFetching } = useQuery({ queryKey: ['storages', storageId, 'piles', pileNumber, 'transportation'], queryFn: async () => getTransportation(storageId, pileNumber) });
+
+  if (isFetching) return <Loading />
+
   return (
     <Card className={classes.card}>
       <h2 className={classes.header}>Даты перемещений</h2>
@@ -27,9 +26,11 @@ export const TableChart = () => {
         </Table.Header>
         <Table.Body>
           {
-            data.map((row, id) => {
-              const start = `${row[0].getUTCDate().toString().padStart(2, '0')}.${(row[0].getUTCMonth() + 1).toString().padStart(2, '0')}.${row[0].getUTCFullYear()}`;
-              const end = `${row[1].getUTCDate().toString().padStart(2, '0')}.${(row[1].getUTCMonth() + 1).toString().padStart(2, '0')}.${row[1].getUTCFullYear()}`;
+            data?.transportations.map((item, id) => {
+              const startDate = new Date(item.load_timestamp * 1000);
+              const endDate = new Date(item.offload_timestamp * 1000);
+              const start = `${startDate.getUTCDate().toString().padStart(2, '0')}.${(startDate.getUTCMonth() + 1).toString().padStart(2, '0')}.${startDate.getUTCFullYear()}`;
+              const end = `${endDate.getUTCDate().toString().padStart(2, '0')}.${(endDate.getUTCMonth() + 1).toString().padStart(2, '0')}.${endDate.getUTCFullYear()}`;
 
               return (
                 <Table.Row key={id}>
