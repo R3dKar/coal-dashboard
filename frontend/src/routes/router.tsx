@@ -1,5 +1,5 @@
 import { createBrowserRouter, Navigate } from 'react-router';
-import App from '../app';
+import App from '../App';
 import StoragePage from '../pages/storage-page/storage-page';
 import UploadPage from '../pages/upload';
 import PileData from '../components/pile-data/pile-data';

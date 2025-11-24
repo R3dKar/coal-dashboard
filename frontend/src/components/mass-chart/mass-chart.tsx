@@ -5,8 +5,9 @@ import { useQuery } from '@tanstack/react-query';
 import { getMass } from '../../api/api';
 import { Loading } from '../loading/loading';
 import { useMemo } from 'react';
+import data from '../aqi-beijing.json';
 
-const chartOptions = (mass?: number[], timestamp?: number[]) => {
+const chartOptions = (mass?: number[], timestamp?: string[]) => {
   if (!mass || !timestamp) return null;
 
   return {
@@ -29,7 +30,7 @@ const chartOptions = (mass?: number[], timestamp?: number[]) => {
       }
     ],
     xAxis: {
-      data: timestamp.map(item => new Date(item * 1000).toLocaleDateString())
+      data: timestamp
     },
     series: {
       name: 'Тоннаж',
@@ -44,16 +45,16 @@ export interface MassChartProps {
   pileNumber: number
 };
 
-export const MassChart = ({ storageId, pileNumber }: MassChartProps) => {
-  const { data, isFetching } = useQuery({ queryKey: [], queryFn: async () => getMass(storageId, pileNumber) });
-  const options = useMemo(() => chartOptions(data?.mass, data?.timestamp), [data]);
+export const MassChart = ({}: MassChartProps) => {
+  // const { data, isFetching } = useQuery({ queryKey: [], queryFn: async () => getMass(storageId, pileNumber) });
+  const options = useMemo(() => chartOptions(data.map(item => item[1]) as number[], data.map(item => item[0]) as string[]), [data]);
 
-  if (isFetching) return <Loading />
+  // if (isFetching) return <Loading />
 
   return (
     <Card className={classes.card}>
       <div className={classes.container}>
-        <h2 className={classes.header}>Тоннаж: {Math.floor(data?.mass.at(-1)!)}т</h2>
+        <h2 className={classes.header}>Тоннаж: {123}т</h2>
         <EChartsReact option={options!} className={classes.chart} />
       </div>
     </Card>

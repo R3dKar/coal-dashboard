@@ -7,11 +7,18 @@ import { getStorages } from '../../api/api';
 import EmptyPage from "../empty-page/empty-page";
 
 export const StoragePage = () => {
-  const { data, isFetching } = useQuery({ queryKey: ['storages'], queryFn: getStorages });
+  // const { data, isFetching } = useQuery({ queryKey: ['storages'], queryFn: getStorages });
 
-  if (isFetching) return <Loading />
+  // if (isFetching) return <Loading />
+
+  const data = {
+    storages: [
+      2, 3, 6
+    ]
+  };
+
   if (!!data && data.storages.length === 0) return <EmptyPage />
-  
+
   return (
     <div className={classes.container}>
       <Outlet />

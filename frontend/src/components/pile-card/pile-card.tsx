@@ -14,15 +14,17 @@ export interface PileCardProps {
   inflamation_prediction: number
 };
 
-export const PileCard = ({ active, ...data }: PileCardProps) => {
-  // const data = {
-  //   number: 1,
-  //   temperature: 32,
-  //   temperature_rate: -1 as (-2 | -1 | 0 | 1 | 2),
-  //   days: 119,
-  //   coal_type: 'A1',
-  //   inflamation_prediction: 0.4,
-  // };
+const random = (min: number, max: number) => Math.round(Math.random() * (max - min) + min);
+
+export const PileCard = ({ active, ...data1 }: Partial<PileCardProps>) => {
+  const data = {
+    number: random(1, 100),
+    temperature: random(20, 100),
+    temperature_rate: random(-2, 2) as (-2 | -1 | 0 | 1 | 2),
+    days: random(1, 500),
+    coal_type: 'A1',
+    inflamation_prediction: random(1, 10)/10,
+  };
 
   const predictionStatus = (data.inflamation_prediction < 0.5) ? 'ok' : (data.inflamation_prediction < 0.75) ? 'warning' : 'alert';
 

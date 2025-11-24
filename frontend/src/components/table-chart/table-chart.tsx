@@ -9,10 +9,37 @@ export interface TableChartProps {
   pileNumber: number
 };
 
-export const TableChart = ({ storageId, pileNumber }: TableChartProps) => {
-  const { data, isFetching } = useQuery({ queryKey: ['storages', storageId, 'piles', pileNumber, 'transportation'], queryFn: async () => getTransportation(storageId, pileNumber) });
+const data = [
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+  { load_timestamp: 1716531994, offload_timestamp: 1763976394 },
+]
 
-  if (isFetching) return <Loading />
+export const TableChart = () => {
+  // const { data, isFetching } = useQuery({ queryKey: ['storages', storageId, 'piles', pileNumber, 'transportation'], queryFn: async () => getTransportation(storageId, pileNumber) });
+
+  // if (isFetching) return <Loading />
 
   return (
     <Card className={classes.card}>
@@ -26,7 +53,7 @@ export const TableChart = ({ storageId, pileNumber }: TableChartProps) => {
         </Table.Header>
         <Table.Body>
           {
-            data?.transportations.map((item, id) => {
+            data.map((item, id) => {
               const startDate = new Date(item.load_timestamp * 1000);
               const endDate = new Date(item.offload_timestamp * 1000);
               const start = `${startDate.getUTCDate().toString().padStart(2, '0')}.${(startDate.getUTCMonth() + 1).toString().padStart(2, '0')}.${startDate.getUTCFullYear()}`;

@@ -10,18 +10,21 @@ export interface StorageGridProps {
 };
 
 export const StorageGrid = ({ storageId }: StorageGridProps) => {
-  const { data, isFetching } = useQuery({ queryKey: ['storages', storageId, 'piles'], queryFn: async () => getPiles(storageId) });
+  // const { data, isFetching } = useQuery({ queryKey: ['storages', storageId, 'piles'], queryFn: async () => getPiles(storageId) });
 
-  if (isFetching) return <Loading />
+  // if (isFetching) return <Loading />
 
   return (
     <section className={classes.container}>
       <h1 className={classes.header}>Склад #{storageId}</h1>
       <div className={classes.grid}>
         {
-          data?.piles?.map(pile => (
-            <NavLink key={pile.number} to={`/piles/${storageId}/${pile.number}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className={classes.link}>
-              {({ isActive }) => <PileCard active={isActive} {...pile} />}
+          (new Array(17).fill(null)).map((_, i) => (
+            // <NavLink key={pile.number} to={`/piles/${storageId}/${pile.number}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className={classes.link}>
+            //   {({ isActive }) => <PileCard active={isActive} {...pile} />}
+            // </NavLink>
+            <NavLink key={i} to={`/piles/${storageId}/${i}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className={classes.link}>
+              {({ isActive }) => <PileCard active={isActive} />}
             </NavLink>
           ))
         }
