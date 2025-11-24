@@ -1,0 +1,39 @@
+.card {
+  max-width: 500px;
+  box-shadow: 0 0 6px #0003;
+  
+  transition: background-color 0.1s ease;
+}
+
+.card_active {
+  background-color: lightgray;
+}
+
+.card_warning {
+  box-shadow: 0 0 6px #ffe629;
+}
+
+.card_alert {
+  box-shadow: 0 0 6px #e5484d;
+}
+
+.number {
+  margin: 0;
+}
+
+.prediction {
+  margin: 10px 0 0;
+  font-size: 18px;
+}
+
+.progress {
+  margin-bottom: 20px;
+}
+
+.metric {
+  margin: 0;
+}
+
+.metric_value {
+  font-weight: bold;
+}

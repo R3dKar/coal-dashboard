@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+
+  margin-top: 50px;
+}
+
+.logo {
+  height: 50px;
+}
+
+.link {
+  font-size: 24px;
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+}
+
+.link_active {
+  text-decoration: underline;
+}

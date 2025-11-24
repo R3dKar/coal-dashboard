@@ -1,0 +1,14 @@
+.card {
+  grid-area: table;
+  box-shadow: 0 0 6px #0003;
+}
+
+.header {
+  margin: 0;
+}
+
+.table {
+  margin-top: 10px;
+  max-height: calc(100vh - 300px);
+  overflow-y: auto;
+}

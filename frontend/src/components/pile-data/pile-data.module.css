@@ -1,0 +1,23 @@
+.container {
+  padding: 10px;
+}
+
+.header {}
+
+.grid {
+  min-height: calc(100vh - 240px);
+  display: grid;
+
+  grid-template-columns: 400px 1fr 800px;
+  grid-template-rows: repeat(3, auto);
+  grid-template-areas:
+    "table temperature archive"
+    "table mass archive"
+    "table prediction prediction";
+
+  gap: 10px;
+}
+
+.prediction {
+  grid-area: prediction;
+}

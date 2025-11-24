@@ -1,0 +1,19 @@
+.card {
+  grid-area: mass;
+  box-shadow: 0 0 6px #0003;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+.header {
+  margin: 0;
+}
+
+.chart {
+  flex-grow: 1;
+}
